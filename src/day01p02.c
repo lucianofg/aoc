@@ -52,7 +52,7 @@ int process_line(char *line) {
                     i += 1;
                 }
                 break;
-            case 't':  // two three
+            case 't':
                 if (strncmp(line + i, "two", 3) == 0) {
                     has_number = 1;
                     number = 2;
@@ -73,7 +73,7 @@ int process_line(char *line) {
                     number = 5;
                     i += 2;
                 }
-                break;  // four and five
+                break;
             case 's':
                 if (strncmp(line + i, "six", 3) == 0) {
                     has_number = 1;
@@ -84,7 +84,7 @@ int process_line(char *line) {
                     number = 7;
                     i += 3;
                 }
-                break;  // six and seven
+                break;
             case 'e':
                 if (strncmp(line + i, "eight", 5) == 0) {
                     has_number = 1;

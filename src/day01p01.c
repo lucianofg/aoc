@@ -1,3 +1,4 @@
+
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -33,7 +34,8 @@ int main(int argc, char *argv[]) {
 
 int process_line(char *line) {
     bool need_first = true;
-    int first_digit, last_digit;
+    int first_digit = 0;
+    int last_digit = 0;
 
     for (int i = 0; line[i]; i++) {
         char c = line[i];
