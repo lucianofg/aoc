@@ -4,11 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// only 12 red cubes, 13 green cubes, and 14 blue cubes?
-static const int MAX_RED   = 12;
-static const int MAX_GREEN = 13;
-static const int MAX_BLUE  = 14;
-
 enum colors {
     RED = 0,
     BLUE,
@@ -69,11 +64,18 @@ char *get_id(char *line, int *return_id) {
 }
 
 bool process_cubes(char *line) {
+    // only 12 red cubes, 13 green cubes, and 14 blue cubes
+    static const int MAX[] = {
+        [RED] = 12,
+        [BLUE] = 14,
+        [GREEN] = 13,
+    };
     int total[3] = {
         [RED] = 0,
         [BLUE] = 0,
         [GREEN] = 0,
     };
+
     enum colors color;
     char tmp[5] = "";
     size_t tmp_size = 5;
@@ -119,13 +121,12 @@ bool process_cubes(char *line) {
             }
 
             if (line[i] == ';' || line[i] == '\n') {
-                if (total[RED] > MAX_RED || total[BLUE] > MAX_BLUE ||
-                    total[GREEN] > MAX_GREEN) {
-                    return false;
+                for (int k = 0; k < 3; k++) {
+                    if (total[k] > MAX[k]) {
+                        return false;
+                    }
+                    total[k] = 0;
                 }
-                total[RED] = 0;
-                total[BLUE] = 0;
-                total[GREEN] = 0;
             }
             break;
         }

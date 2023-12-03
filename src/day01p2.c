@@ -1,4 +1,3 @@
-
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -38,74 +37,54 @@ int process_line(char *line) {
     int last_digit = 0;
 
     for (int i = 0; line[i]; i++) {
-        int has_number = 0;
         int number = 0;
-        if isdigit (line[i]) {
-            has_number = 1;
+        if (isdigit(line[i])) {
             number = char_to_int(line[i]);
         } else {
             switch (line[i]) {
             case 'o':
                 if (strncmp(line + i, "one", 3) == 0) {
-                    has_number = 1;
                     number = 1;
-                    i += 1;
                 }
                 break;
             case 't':
                 if (strncmp(line + i, "two", 3) == 0) {
-                    has_number = 1;
                     number = 2;
-                    i += 1;
                 } else if (strncmp(line + i, "three", 5) == 0) {
-                    has_number = 1;
                     number = 3;
-                    i += 3;
                 }
                 break;
             case 'f':
                 if (strncmp(line + i, "four", 4) == 0) {
-                    has_number = 1;
                     number = 4;
-                    i += 2;
                 } else if (strncmp(line + i, "five", 4) == 0) {
-                    has_number = 1;
                     number = 5;
-                    i += 2;
                 }
                 break;
             case 's':
                 if (strncmp(line + i, "six", 3) == 0) {
-                    has_number = 1;
                     number = 6;
-                    i += 1;
                 } else if (strncmp(line + i, "seven", 5) == 0) {
-                    has_number = 1;
                     number = 7;
-                    i += 3;
                 }
                 break;
             case 'e':
                 if (strncmp(line + i, "eight", 5) == 0) {
-                    has_number = 1;
                     number = 8;
-                    i += 3;
                 }
                 break;
             case 'n':
                 if (strncmp(line + i, "nine", 4) == 0) {
-                    has_number = 1;
                     number = 9;
-                    i += 2;
                 }
                 break;
             }
         }
-        if (need_first && has_number) {
+        if (need_first && number) {
             first_digit = number * 10;
             need_first = false;
         }
-        if (has_number) {
+        if (number) {
             last_digit = number;
         }
     }
