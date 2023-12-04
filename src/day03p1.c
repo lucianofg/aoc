@@ -1,4 +1,3 @@
-
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -8,7 +7,7 @@
 // dimensions of the file:
 #define ROWS 140
 #define COLS 140
-#define MAX_SIZE 20000
+#define MAX_SIZE 1000
 
 int has_numbers[ROWS][COLS];  // i if has number (i being index of list_numbers)
 bool has_symbols[ROWS][COLS];  // true if has symbol
@@ -85,7 +84,7 @@ int get_has_number(int i, int j) {
 }
 
 
-void create_adjacent_numbers() {
+void find_adjacent_numbers() {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             if (has_symbols[i][j]) {
@@ -127,7 +126,7 @@ int main(int argc, char *argv[]) {
         process_line(line, line_number);
         line_number++;
     }
-    create_adjacent_numbers();
+    find_adjacent_numbers();
     int sum = do_sum();
 
     printf("%d\n", sum);
