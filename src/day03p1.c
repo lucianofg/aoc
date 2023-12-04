@@ -1,3 +1,4 @@
+
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -75,83 +76,28 @@ void if_number_add_adjacent(int i) {
     }
 }
 
+int get_has_number(int i, int j) {
+    if (i < 0 || j < 0 || i >= ROWS || j >= COLS) {
+        return -1;
+    } else {
+        return has_numbers[i][j];
+    }
+}
+
+
 void create_adjacent_numbers() {
-    // check most cases
-    for (int i = 1; i < ROWS - 1; i++) {
-        for (int j = 1; j < COLS - 1; j++) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
             if (has_symbols[i][j]) {
-                if_number_add_adjacent(has_numbers[i - 1][j - 1]);
-                if_number_add_adjacent(has_numbers[i - 1][j]);
-                if_number_add_adjacent(has_numbers[i - 1][j + 1]);
-                if_number_add_adjacent(has_numbers[i][j - 1]);
-                if_number_add_adjacent(has_numbers[i][j + 1]);
-                if_number_add_adjacent(has_numbers[i + 1][j - 1]);
-                if_number_add_adjacent(has_numbers[i + 1][j]);
-                if_number_add_adjacent(has_numbers[i + 1][j + 1]);
+                if_number_add_adjacent(get_has_number(i - 1, j - 1));
+                if_number_add_adjacent(get_has_number(i - 1, j));
+                if_number_add_adjacent(get_has_number(i - 1, j + 1));
+                if_number_add_adjacent(get_has_number(i, j - 1));
+                if_number_add_adjacent(get_has_number(i, j + 1));
+                if_number_add_adjacent(get_has_number(i + 1, j - 1));
+                if_number_add_adjacent(get_has_number(i + 1, j));
+                if_number_add_adjacent(get_has_number(i + 1, j + 1));
             }
-        }
-    }
-
-    // check very specific cases
-    if (has_symbols[0][0]) {
-        if_number_add_adjacent(has_numbers[0][1]);
-        if_number_add_adjacent(has_numbers[1][0]);
-        if_number_add_adjacent(has_numbers[1][1]);
-    }
-    if (has_symbols[ROWS - 1][COLS - 1]) {
-        if_number_add_adjacent(has_numbers[ROWS - 1][COLS - 2]);
-        if_number_add_adjacent(has_numbers[ROWS - 2][COLS - 1]);
-        if_number_add_adjacent(has_numbers[ROWS - 2][COLS - 2]);
-    }
-    if (has_symbols[0][COLS - 1]) {
-        if_number_add_adjacent(has_numbers[0][COLS - 2]);
-        if_number_add_adjacent(has_numbers[1][COLS - 1]);
-        if_number_add_adjacent(has_numbers[1][COLS - 2]);
-    }
-    if (has_symbols[ROWS - 1][0]) {
-        if_number_add_adjacent(has_numbers[ROWS - 1][1]);
-        if_number_add_adjacent(has_numbers[ROWS - 2][0]);
-        if_number_add_adjacent(has_numbers[ROWS - 2][1]);
-    }
-
-    // check first line
-    for (int i = 0, j = 0; j < COLS - 1; j++) {
-        if (has_symbols[i][j]) {
-            if_number_add_adjacent(has_numbers[i][j - 1]);
-            if_number_add_adjacent(has_numbers[i][j + 1]);
-            if_number_add_adjacent(has_numbers[i + 1][j - 1]);
-            if_number_add_adjacent(has_numbers[i+ 1][j]);
-            if_number_add_adjacent(has_numbers[i + 1][j + 1]);
-        }
-    }
-    // check last line
-    for (int i = ROWS - 1, j = 0; j < COLS - 1; j++) {
-        if (has_symbols[i][j]) {
-            if_number_add_adjacent(has_numbers[i][j - 1]);
-            if_number_add_adjacent(has_numbers[i][j + 1]);
-            if_number_add_adjacent(has_numbers[i - 1][j - 1]);
-            if_number_add_adjacent(has_numbers[i - 1][j]);
-            if_number_add_adjacent(has_numbers[i - 1][j + 1]);
-        }
-    }
-    // check first column
-    for (int i = 0, j = 0; i < ROWS - 1; i++) {
-        if (has_symbols[i][j]) {
-            if_number_add_adjacent(has_numbers[i][j + 1]);
-            if_number_add_adjacent(has_numbers[i - 1][j]);
-            if_number_add_adjacent(has_numbers[i - 1][j + 1]);
-            if_number_add_adjacent(has_numbers[i + 1][j]);
-            if_number_add_adjacent(has_numbers[i + 1][j + 1]);
-        }
-    }
-    // check last column
-    for (int i = 0, j = COLS - 1; i < ROWS - 1; i++) {
-        if (has_symbols[i][j]) {
-            if_number_add_adjacent(has_numbers[i][j - 1]);
-            if_number_add_adjacent(has_numbers[i - 1][j]);
-            if_number_add_adjacent(has_numbers[i - 1][j - 1]);
-            if_number_add_adjacent(has_numbers[i + 1][j]);
-            if_number_add_adjacent(has_numbers[i + 1][j - 1]);
         }
     }
 }
