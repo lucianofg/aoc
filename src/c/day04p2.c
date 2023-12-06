@@ -60,11 +60,10 @@ int process_line(char *line, int line_number, int *cards) {
         }
     }
 
-    for (int i = 0; i < cards[line_number]; i++) {
-        for (int j = 0; j < sum; j++) {
-            cards[line_number + 1 + j] += 1;
-        }
+    for (int i = 0; i < sum; i++) {
+        cards[line_number + 1 + i] += cards[line_number];
     }
+
     return cards[line_number];
 }
 

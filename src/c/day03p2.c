@@ -89,7 +89,7 @@ void find_gears() {
                 int index = 0;
                 for (int p = 0; p < 8; p++) {
                     if (nums[p] != -1) {
-                        bool has_equal = false;;
+                        bool has_equal = false;
                         for (int k = 0; k < index; k++) {
                             if (nums[p] == gear_numbers[k]) {
                                 has_equal = true;
@@ -98,7 +98,6 @@ void find_gears() {
                         if (!has_equal) {
                             gear_numbers[index++] = nums[p];
                         }
-
                     }
                 }
 

@@ -1,7 +1,7 @@
-
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int process_line(char *line);
@@ -34,21 +34,19 @@ int main(int argc, char *argv[]) {
 
 int process_line(char *line) {
     bool need_first = true;
-    int first_digit = 0;
-    int last_digit = 0;
+    char number[3] = "";
 
     for (int i = 0; line[i]; i++) {
-        char c = line[i];
-        if (isdigit(c)) {
+        if (isdigit(line[i])) {
             if (need_first) {
-                first_digit = char_to_int(c) * 10;
+                number[0] = line[i];
                 need_first = false;
             }
-            last_digit = char_to_int(c);
+            number[1] = line[i];
         }
     }
 
-    return first_digit + last_digit;
+    return atoi(number);
 }
 
 int char_to_int(char ch) {
