@@ -4,7 +4,7 @@ from collections import Counter
 from functools import cmp_to_key
 
 if len(sys.argv) < 2:
-    print(f"Usage: {sys.argv[0]} input_file")
+    print(f"Usage: {sys.argv[0]} input_file", file=sys.stderr)
     exit(1)
 
 lines = open(sys.argv[1]).readlines()
