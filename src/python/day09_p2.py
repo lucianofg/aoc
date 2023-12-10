@@ -29,7 +29,6 @@ for line in contents:
             results.append(numbers[i+1] - numbers[i])
         numbers = results
         results = []
-    next = 0
     next = reduce(lambda x, y: y - x, reversed(firsts))
     soma += next
 
